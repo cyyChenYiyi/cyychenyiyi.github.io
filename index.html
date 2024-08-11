@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈奕羿的个人网站</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        nav {
+            width: 100%;
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: background-color 0.5s ease, color 0.5s ease; /* 过渡效果 */
+        }
+        nav img {
+            height: 40px;
+            margin-right: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-grow: 1;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        nav ul li {
+            margin: 0 20px;
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.5s ease; /* 过渡效果 */
+        }
+        main {
+            max-width: 800px;
+            margin: 20px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease; /* 过渡效果 */
+        }
+        iframe {
+            width: 100%;
+            height: calc(100vh - 60px);
+            border: none;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease; /* 过渡效果 */
+        }
+        h1, h2 {
+            margin: 0;
+            padding-bottom: 15px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .skill {
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .contact-info {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .contact-info p {
+            margin: 10px 0;
+        }
+        footer {
+            margin-top: auto;
+            padding: 10px;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <img src="https://static.codemao.cn/coco/player/unstable/S1pHwGpL0.image/png?hash=Fv21fonr92VybYwCRBeXhZPyZJs9g" alt="Logo">
+        <ul>
+            <li><a href="#" onclick="showSection('home', '陈奕羿的个人网站')">首页</a></li>
+            <li><a href="#" onclick="showSection('classguardian', 'ClassGuardian | 陈奕羿的个人网站')">ClassGuardian</a></li>
+            <li><a href="#" onclick="showSection('blog', 'Blog | 陈奕羿的个人网站')">Blog</a></li>
+            <li><a href="#" onclick="showSection('contact', '联系我 | 陈奕羿的个人网站')">联系我</a></li>
+        </ul>
+    </nav>
+    <main id="home">
+        <section>
+            <h1>陈奕羿的个人网站</h1>
+            <h2>关于我</h2>
+            <p>我是初中生，来自福建厦门。我对科技和阅读有着浓厚的兴趣，尤其是编程领域。我目前正在完成一个名为ClassGuardian的项目，这是一个用于课间锁定教室电脑的工具，旨在防止学生在课间玩电脑。我是学校的电教员，热衷于解决实际问题。</p>
+        </section>
+        <section>
+            <h2>技能</h2>
+            <div class="skills">
+                <div class="skill">Python 编程</div>
+                <div class="skill">Web 开发</div>
+                <div class="skill">项目管理</div>
+                <div class="skill">科技爱好者</div>
+            </div>
+        </section>
+    </main>
+    <iframe id="classguardian" src="https://cyychenyiyi.github.io/ClassGuardian"></iframe>
+    <iframe id="blog" src="https://cyychenyiyi.github.io/blog"></iframe>
+    <main id="contact">
+        <section>
+            <h2>联系我</h2>
+            <div class="contact-info">
+                <p><strong>邮箱：</strong>18250858915@163.com</p>
+                <p><strong>手机：</strong>18250858915</p>
+                <p><strong>GitHub：</strong><a href="https://github.com/cyychenyiyi" target="_blank">cyychenyiyi</a></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 陈奕羿的个人网站 | 设计精美，性能卓越</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            showSection('home', '陈奕羿的个人网站');
+        };
+
+        function showSection(section, title) {
+            // 隐藏所有内容并将透明度设为0
+            ['home', 'classguardian', 'blog', 'contact'].forEach(function(id) {
+                document.getElementById(id).style.display = 'none';
+                document.getElementById(id).style.opacity = '0';
+            });
+
+            // 显示选中的内容并渐变显示
+            document.getElementById(section).style.display = 'block';
+            setTimeout(function() {
+                document.getElementById(section).style.opacity = '1';
+            }, 50);
+
+            // 更改网页标题
+            document.title = title;
+
+            // 根据选项卡更改导航栏颜色
+            if (section === 'classguardian') {
+                document.getElementById('navbar').style.backgroundColor = '#09051F';
+                // 将选项卡文本颜色改为白色
+                var links = document.querySelectorAll('nav ul li a');
+                links.forEach(function(link) {
+                    link.style.color = 'white';
+                });
+            } else {
+                document.getElementById('navbar').style.backgroundColor = 'white';
+                // 将选项卡文本颜色改为默认颜色
+                var links = document.querySelectorAll('nav ul li a');
+                links.forEach(function(link) {
+                    link.style.color = '#333';
+                });
+            }
+        }
+    </script>
+</body>
+</html>

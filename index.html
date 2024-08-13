@@ -25,7 +25,7 @@
             position: sticky;
             top: 0;
             z-index: 10;
-            transition: background-color 0.5s ease, color 0.5s ease; /* 过渡效果 */
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
         nav img {
             height: 40px;
@@ -39,6 +39,8 @@
             flex-grow: 1;
             justify-content: flex-start;
             align-items: center;
+            transition: max-height 0.5s ease;
+            border-radius: 10px;
         }
         nav ul li {
             margin: 0 20px;
@@ -51,7 +53,14 @@
             color: #333;
             font-weight: bold;
             cursor: pointer;
-            transition: color 0.5s ease; /* 过渡效果 */
+            transition: color 0.5s ease;
+        }
+        .menu-icon {
+            display: none;
+            margin-left: auto;
+            cursor: pointer;
+            height: 40px;
+            width: 40px;
         }
         main {
             max-width: 800px;
@@ -62,7 +71,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: none;
             opacity: 0;
-            transition: opacity 0.5s ease; /* 过渡效果 */
+            transition: opacity 0.5s ease;
         }
         iframe {
             width: 100%;
@@ -70,7 +79,7 @@
             border: none;
             display: none;
             opacity: 0;
-            transition: opacity 0.5s ease; /* 过渡效果 */
+            transition: opacity 0.5s ease;
         }
         h1, h2 {
             margin: 0;
@@ -108,22 +117,53 @@
             text-align: center;
             color: #666;
         }
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                display: none;
+                max-height: 0;
+                overflow: hidden;
+            }
+            nav ul.show {
+                display: flex;
+                max-height: 300px;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .menu-icon {
+                display: block;
+            }
+            nav ul li a[href*="classguardian"] {
+                display: none;
+            }
+            nav.show {
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+        }
     </style>
 </head>
 <body>
     <nav id="navbar">
         <img src="https://static.codemao.cn/coco/player/unstable/S1pHwGpL0.image/png?hash=Fv21fonr92VybYwCRBeXhZPyZJs9g" alt="Logo">
-        <ul>
-            <li><a href="#" onclick="showSection('home', '陈奕羿的个人网站')">首页</a></li>
-            <li><a href="#" onclick="showSection('classguardian', 'ClassGuardian | 陈奕羿的个人网站')">ClassGuardian</a></li>
-            <li><a href="#" onclick="showSection('blog', 'Blog | 陈奕羿的个人网站')">Blog</a></li>
-            <li><a href="#" onclick="showSection('contact', '联系我 | 陈奕羿的个人网站')">联系我</a></li>
+        <ul id="menu">
+            <li><a href="#" onclick="showSection('home', '陈奕羿的个人网站');">首页</a></li>
+            <li><a href="#" onclick="showSection('classguardian', 'ClassGuardian | 陈奕羿的个人网站');">ClassGuardian</a></li>
+            <li><a href="#" onclick="showSection('blog', 'Blog | 陈奕羿的个人网站');">Blog</a></li>
+            <li><a href="#" onclick="showSection('contact', '联系我 | 陈奕羿的个人网站');">联系我</a></li>
         </ul>
+        <img src="https://cyychenyiyi.github.io/菜单.png" alt="Menu" class="menu-icon" onclick="toggleMenu()">
     </nav>
     <main id="home">
         <section>
-            <h1>陈奕羿的个人网站</h1>
-            <h2>关于我</h2>
+            <h1>陈奕羿的个人网站</h2>
             <p>我是初中生，来自福建厦门。我对科技和阅读有着浓厚的兴趣，尤其是编程领域。我目前正在完成一个名为ClassGuardian的项目，这是一个用于课间锁定教室电脑的工具，旨在防止学生在课间玩电脑。我是学校的电教员，热衷于解决实际问题。</p>
         </section>
         <section>
@@ -153,6 +193,11 @@
     </footer>
 
     <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+
         window.onload = function() {
             showSection('home', '陈奕羿的个人网站');
         };
@@ -174,20 +219,19 @@
             document.title = title;
 
             // 根据选项卡更改导航栏颜色
+            const navbar = document.getElementById('navbar');
             if (section === 'classguardian') {
-                document.getElementById('navbar').style.backgroundColor = '#09051F';
-                // 将选项卡文本颜色改为白色
-                var links = document.querySelectorAll('nav ul li a');
-                links.forEach(function(link) {
-                    link.style.color = 'white';
-                });
+                navbar.style.backgroundColor = '#09051F';
+                navbar.style.color = 'white';
             } else {
-                document.getElementById('navbar').style.backgroundColor = 'white';
-                // 将选项卡文本颜色改为默认颜色
-                var links = document.querySelectorAll('nav ul li a');
-                links.forEach(function(link) {
-                    link.style.color = '#333';
-                });
+                navbar.style.backgroundColor = 'white';
+                navbar.style.color = '#333';
+            }
+
+            // 如果是手机端，切换选项卡时自动关闭菜单
+            const menu = document.getElementById('menu');
+            if (window.innerWidth <= 768) {
+                menu.classList.remove('show');
             }
         }
     </script>
